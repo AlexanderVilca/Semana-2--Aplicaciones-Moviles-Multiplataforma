@@ -1,0 +1,88 @@
+class MarvelHeroes {
+  String nombrePila;
+  String nombrePersonaje;
+
+  MarvelHeroes({required this.nombrePila, required this.nombrePersonaje});
+
+  String mensaje() {
+    return "Hola, soy $nombrePila pero me conocen como tu amigable vecino $nombrePersonaje";
+  }
+}
+
+void main() {
+  var spiderman = MarvelHeroes(nombrePila: "Peter Parker", nombrePersonaje: "Spiderman");
+  print(spiderman.mensaje()); 
+}
+
+class DCHeroes {
+  late String nombrePila;
+  late String nombrePersonaje;
+
+  DCHeroes.fromDCJson(Map<String, dynamic> dcJson) {
+    nombrePila = dcJson['nombrePila'] ?? 'no tiene nombre';
+    nombrePersonaje = dcJson['nombrePersonaje'] ?? 'no tiene alias';
+  }
+
+  String mensaje() {
+    return "Mi nombre es $nombrePila pero me conocen como el caballero de la noche $nombrePersonaje";
+  }
+}
+
+void main() {
+  var dcJson = {'nombrePila': 'Bruce Wayne', 'nombrePersonaje': 'Batman'};
+  var batman = DCHeroes.fromDCJson(dcJson);
+  print(batman.mensaje());
+
+  var heroeSinDatos = DCHeroes.fromDCJson({});
+  print(heroeSinDatos.mensaje());
+}
+
+class MarvelHeroe {
+  String nombrePila;
+  String nombreHeroe;
+
+  MarvelHeroe({required this.nombrePila, required this.nombreHeroe});
+
+  MarvelHeroe.hulk()
+      : nombrePila = 'Bruce Banner',
+        nombreHeroe = 'Hulk';
+
+  MarvelHeroe.ironMan()
+      : nombrePila = 'Tony Stark',
+        nombreHeroe = 'Iron Man';
+
+  String mensaje() {
+    return 'Hola, soy $nombrePila, también conocido como $nombreHeroe';
+  }
+}
+
+class DCHeroe {
+  String nombrePila;
+  String nombreHeroe;
+
+  DCHeroe({required this.nombrePila, required this.nombreHeroe});
+
+  DCHeroe.batman()
+      : nombrePila = 'Bruce Wayne',
+        nombreHeroe = 'Batman';
+
+  DCHeroe.superman()
+      : nombrePila = 'Clark Kent',
+        nombreHeroe = 'Superman';
+
+  String mensaje() {
+    return 'Soy $nombrePila, más conocido como $nombreHeroe';
+  }
+}
+
+void main() {
+  var hulk = MarvelHeroe(nombrePila: 'Bruce Banner', nombreHeroe: 'Hulk');
+  var ironMan = MarvelHeroe.ironMan();
+  var batman = DCHeroe.batman();
+  var superman = DCHeroe(nombrePila: 'Clark Kent', nombreHeroe: 'Superman');
+
+  print(hulk.mensaje());
+  print(ironMan.mensaje());
+  print(batman.mensaje());
+  print(superman.mensaje());
+}
